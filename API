@@ -1,0 +1,44 @@
+###npm init -y
+### npm install express
+### to run: node server.js
+
+
+server.js
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const port = 3000; // You can choose any available port
+
+// Middleware to parse JSON requests
+app.use(bodyParser.json());
+
+// Endpoint to run your JavaScript script
+app.post('/your-api-endpoint', (req, res) => {
+    try {
+        // Extract input data from the request
+        const data = req.body;
+
+        // Execute your JavaScript script using the input data
+        const result = yourScriptFunction(data);
+
+        // Return the result as JSON
+        res.json({ result });
+    } catch (error) {
+        // Handle exceptions appropriately
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Your JavaScript script logic
+function yourScriptFunction(data) {
+    // Your script logic here
+    // ...
+
+    return result;
+}
+
+// Start the server
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+});
